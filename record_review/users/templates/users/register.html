@@ -1,0 +1,50 @@
+{% extends "reviews/base.html" %} 
+{% block content %} 
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <div class="media">
+                    <div class="media-body">
+                        <h2 class="account-heading">{{ user.username }}</h2>
+                        <hr/>
+                        {% if user.profile.country %} 
+                            <p>From: {{ user.profile.city }}, {{ user.profile.country }}</p>
+                        {% else %} 
+                            <p>From: {{ user.profile.city }}, {{ user.profile.state }}</p>
+                        {% endif %} 
+                        <p>Favorite bands/artists: {{ user.profile.favorite_artists }}</p>
+                        <p>{{ user.profile.about_user }}</p>
+                    </div>
+                </div>
+                <!-- <form method="POST">
+                    {% csrf_token %} 
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Update Profile</legend>
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                    </fieldset>
+                    <div class="form-group pt-3">
+                        <button class="btn btn-outline-info" type="submit">Update</button>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- CODE FOR "profile.html" -->
+
+<!-- <div class="media">
+    <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <hr/>
+        {% if user.profile.country %} 
+            <p>From: {{ user.profile.city }}, {{ user.profile.country }}</p>
+        {% else %} 
+            <p>From: {{ user.profile.city }}, {{ user.profile.state }}</p>
+        {% endif %} 
+        <p>Favorite bands/artists: {{ user.profile.favorite_artists }}</p>
+        <p>{{ user.profile.about_user }}</p>
+    </div>
+</div>
+<hr/> -->

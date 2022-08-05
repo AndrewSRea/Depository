@@ -1,0 +1,9 @@
+{% extends "reviews/base.html" %}
+{% block content %} 
+    <div class="content-section">
+        <h2>You're logged out. Come back soon!</h2>
+        <div class="border-top px-2 py-3">
+            <small class="text-muted"><a href="{% url 'login' %}">Log In Again</a></small>
+        </div>
+    </div>
+{% endblock content %} 
