@@ -1,0 +1,115 @@
+body {
+    background: #f28a0f;
+    color: #333333;
+    margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+}
+
+.nav-link, button, p, small {
+    font-family: 'Roboto', sans-serif;
+}
+
+.dark {
+    background-color: #0b0835;
+}
+
+nav {
+    border-bottom: 5px solid #add8e6;
+}
+
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+svg {
+    color: #e1b10f;
+}
+
+.navbar-brand {
+    font-family: 'Monoton', cursive;
+    color: #e1b10f;
+}
+
+.content-section {
+    background: #ffe7bd;
+    padding: 10px 20px;
+    border: 5px solid #0c5678;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-header, .card-body, .card-footer {
+    background: #ffe7bd;
+}
+
+.reviews-header {
+    padding: 10px 0 5px 20px;
+}
+
+.reviews-header h3 {
+    color: #e5340b;
+}
+
+.album-header {
+    display: flex;
+    align-items: center;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-img {
+    height: 85px;
+    width: 85px;
+    margin-right: 16px;
+    float: left;
+}
+
+.album-title {
+    overflow-wrap: break-word;
+}
+
+.artist {
+    color: #444444;
+    text-decoration: none;
+}
+
+a.artist:hover {
+    color: #428bca;
+}
+
+.username {
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+/* Use if needed for "Login" and "Register" */
+
+/* .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+} */
