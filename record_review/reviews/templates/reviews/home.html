@@ -1,0 +1,117 @@
+{% extends "reviews/base.html" %} 
+{% block content %}
+    <!-- Keep adding from your rr_bootstrap_example / bs_navbar_with_cards file. -->
+    <div class="content-section reviews-header">
+        <h3>Recent Reviews</h3>
+    </div>
+        {% for review in reviews %} 
+        <div class="card content-section">
+            <div class="card-header">
+                <div class="album-header">
+                    <img src="{{ review.image.url }}" class="rounded article-img">
+                    <h2 class="album-title">
+                        <a class="artist" href="{% url 'review-detail' review.id %}">{{ review.artist }} - {{ review.album }}</a>
+                    </h2>
+                </div>
+                <div class="album-review pt-2">
+                    Avg. Rating: <span class="rating">0.0</span>
+                </div>
+            </div>
+            <div class="card-header user-header">
+                <small class="text-muted">Reviewed by <a class="username" href="#">{{ review.author }}</a> on {{ review.date_posted|date:"F d, Y" }}</small>
+                <small class="text-muted">User Review: {{ review.rating }}</small>
+            </div>
+            <div class="card-body">
+                <p class="article-content">
+                    {{ review.content }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a class="add-article" href="#">+ Add a review</a>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock content %}
+
+<!-- <div class="col-md-8">
+    <div class="content-section reviews-header">
+        <h3>Recent Reviews</h3>
+    </div>
+    <div class="card content-section">
+        <div class="card-header">
+            <div class="album-header">
+                <img src="images/NirvanaNevermindalbumcover.jpg" class="rounded article-img">
+                <h2 class="album-title"><a class="artist" href="#">Nirvana</a> - Nevermind</h2>
+            </div>
+            <div class="album-review pt-2">
+                Avg. Rating: <span class="rating">8.6</span>
+            </div>
+        </div>
+        <div class="card-header user-header">
+            <small class="text-muted">Reviewed by <a class="username" href="#">Drewser2ser</a> on May 14, 2022</small>
+            <small class="text-muted">User Review: 8</small>
+        </div>
+        <div class="card-body">
+            <p class="article-content">
+                Pug schlitz wolf vaporware sustainable. Health goth bicycle rights chia fam franzen iPhone before 
+                they sold out beard af vice. Mumblecore kombucha vexillologist viral air plant chartreuse locavore 
+                vegan cred polaroid hell of yes plz cray church-key seitan. Bespoke man bun tacos poutine food truck.
+
+                Crucifix quinoa hashtag, lyft locavore street art roof party mlkshk forage. Cred cliche fashion axe 
+                yes plz XOXO fixie skateboard irony pok pok street art. Live-edge neutra YOLO, locavore raw denim 
+                XOXO edison bulb literally leggings tumeric distillery cardigan. Hella dreamcatcher put a bird on it 
+                yes plz readymade gluten-free shabby chic, ennui cred distillery quinoa hell of.
+            </p>
+        </div>
+        <div class="card-footer">
+            <a class="add-article" href="#">+ Add a review</a>
+        </div>
+    </div>
+    <div class="card content-section">
+        <div class="card-header">
+            <div class="album-header">
+                <img src="images/matthew_sweet_100.jpg" class="rounded article-img">
+                <h2 class="album-title"><a class="artist" href="#">Matthew Sweet</a> - 100% Fun</h2>
+            </div>
+            <div class="album-review pt-2">
+                Avg. Rating: <span class="rating">7.8</span>
+            </div>
+        </div>
+        <div class="card-header user-header">
+            <small class="text-muted">Reviewed by <a class="username" href="#">Iggy Stardust</a> on May 26, 2022</small>
+            <small class="text-muted">User Review: 7</small>
+        </div>
+        <div class="card-body">
+            <p class="article-content">
+                Viral adaptogen tbh hashtag, heirloom yuccie vinyl vaporware taiyaki butcher irony tacos. Adaptogen 
+                green juice selfies occupy polaroid XOXO banjo artisan vinyl. YOLO cray selfies retro farm-to-table 
+                fashion axe. Pour-over gentrify pabst portland organic tbh. Lo-fi pork belly tote bag meggings next 
+                level meh keytar kale chips ethical readymade man bun. Neutra echo park shaman photo booth, 8-bit 
+                migas raclette squid hammock vape af authentic venmo.
+
+                Iceland tattooed trust fund kinfolk prism. Pinterest deep v beard food truck pitchfork umami lyft 
+                four loko tumeric locavore. Pug literally heirloom chillwave. Church-key cardigan aesthetic mumblecore 
+                prism succulents, actually wayfarers next level hammock 90's irony blog bicycle rights. Hexagon pok 
+                pok farm-to-table mlkshk forage, put a bird on it intelligentsia kickstarter celiac.
+            </p>
+        </div>
+        <div class="card-footer">
+            <a class="add-article" href="#">+ Add a review</a>
+        </div>
+    </div>
+</div> -->
+
+<!-- DJANGO REVIEWS -->
+
+<!-- <div class="card content-section">
+    <div class="card-header user-header">
+        <small class="text-muted">Reviewed by <a class="username" href="#">{{ review.author }}</a> on {{ review.date_posted|date:"F d, Y" }}</small>
+    </div>
+    <div class="card-body">
+        <h2 class="album-title"><a class="artist" href="{% url 'review-detail' review.id %}">{{ review.artist }} - {{ review.album }}</a></h2>
+        <p class="article-content">{{ review.content }}</p>
+    </div>
+    <div class="card-footer">
+        <a class="add-article" href="#">+ Add a review</a>
+    </div>
+</div> -->

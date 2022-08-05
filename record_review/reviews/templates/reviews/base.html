@@ -1,0 +1,174 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
+              integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&family=Varela+Round&display=swap" rel="stylesheet">
+
+        {% if title %} 
+            <title>Record Review - {{ title }}</title>
+        {% else %} 
+            <title>Record Review</title>
+        {% endif %} 
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark dark fixed-top">
+                <div class="container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vinyl-fill me-2" viewBox="0 0 16 16">
+                        <path d="M8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 3a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"/>
+                    </svg>
+                    <a class="navbar-brand me-4" href="{% url 'reviews-home' %}">Record Review</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <a class="nav-item nav-link" aria-current="page" href="{% url 'reviews-home' %}">Home</a>
+                            <a class="nav-item nav-link" href="{% url 'reviews-about' %}">About</a>
+                            {% if user.is_authenticated %} 
+                                <a class="nav-item nav-link" href="{% url 'review-create' %}">Add Review</a>
+                            {% endif %}
+                            </li>
+                        </div>
+                        <!-- Navbar Right Side -->
+                        <div class="navbar-nav ms-auto me-2">
+                            {% if user.is_authenticated %}
+                                <a class="nav-item nav-link" href="">Profile</a>
+                                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                            {% else %} 
+                                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                            {% endif %} 
+                        </div>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search Reviews" aria-label="Search">
+                            <button class="btn btn-outline-warning" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="container mt-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="content-section">
+                        <h4>Welcome to Record Review!</h4>
+                        <hr/>
+                        <p class="text-muted">
+                            An app where you can write your own reviews of your favorite music albums, and rate them, too!
+                            You can also add reviews to other people's music album reviews, and add your ratings to those
+                            reviews as well.
+                        </p>
+                        <p class="text-muted">
+                            Create your own account using the <a class="about-register-link" href="{% url 'register' %}">Register</a> 
+                            link, and start writing your own reviews!
+                        </p>
+                        <p class="text-muted">
+                            You can also search for reviews of your favorite artists or albums using the search bar above.
+                        </p>
+                        <p class="text-muted">
+                            So have fun, and get reviewing!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    {% if messages %} 
+                        {% for message in messages %} 
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %} 
+                    {% endif %}
+                    {% block content %}{% endblock %} 
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+       
+    </body>
+</html>
+
+
+
+<!-- Cards holding reviews -->
+
+<!-- <div class="col-md-8">
+    <div class="content-section reviews-header">
+        <h3>Recent Reviews</h3>
+    </div>
+    <div class="card content-section">
+        <div class="card-header">
+            <div class="album-header">
+                <img src="images/NirvanaNevermindalbumcover.jpg" class="rounded article-img">
+                <h2 class="album-title"><a class="artist" href="#">Nirvana</a> - Nevermind</h2>
+            </div>
+            <div class="album-review pt-2">
+                Avg. Rating: <span class="rating">8.6</span>
+            </div>
+        </div>
+        <div class="card-header user-header">
+            <small class="text-muted">Reviewed by <a class="username" href="#">Drewser2ser</a> on May 14, 2022</small>
+            <small class="text-muted">User Review: 8</small>
+        </div>
+        <div class="card-body">
+            <p class="article-content">
+                Pug schlitz wolf vaporware sustainable. Health goth bicycle rights chia fam franzen iPhone before 
+                they sold out beard af vice. Mumblecore kombucha vexillologist viral air plant chartreuse locavore 
+                vegan cred polaroid hell of yes plz cray church-key seitan. Bespoke man bun tacos poutine food truck.
+
+                Crucifix quinoa hashtag, lyft locavore street art roof party mlkshk forage. Cred cliche fashion axe 
+                yes plz XOXO fixie skateboard irony pok pok street art. Live-edge neutra YOLO, locavore raw denim 
+                XOXO edison bulb literally leggings tumeric distillery cardigan. Hella dreamcatcher put a bird on it 
+                yes plz readymade gluten-free shabby chic, ennui cred distillery quinoa hell of.
+            </p>
+        </div>
+        <div class="card-footer">
+            <a class="add-article" href="#">+ Add a review</a>
+        </div>
+    </div>
+    <div class="card content-section">
+        <div class="card-header">
+            <div class="album-header">
+                <img src="images/matthew_sweet_100.jpg" class="rounded article-img">
+                <h2 class="album-title"><a class="artist" href="#">Matthew Sweet</a> - 100% Fun</h2>
+            </div>
+            <div class="album-review pt-2">
+                Avg. Rating: <span class="rating">7.8</span>
+            </div>
+        </div>
+        <div class="card-header user-header">
+            <small class="text-muted">Reviewed by <a class="username" href="#">Iggy Stardust</a> on May 26, 2022</small>
+            <small class="text-muted">User Review: 7</small>
+        </div>
+        <div class="card-body">
+            <p class="article-content">
+                Viral adaptogen tbh hashtag, heirloom yuccie vinyl vaporware taiyaki butcher irony tacos. Adaptogen 
+                green juice selfies occupy polaroid XOXO banjo artisan vinyl. YOLO cray selfies retro farm-to-table 
+                fashion axe. Pour-over gentrify pabst portland organic tbh. Lo-fi pork belly tote bag meggings next 
+                level meh keytar kale chips ethical readymade man bun. Neutra echo park shaman photo booth, 8-bit 
+                migas raclette squid hammock vape af authentic venmo.
+
+                Iceland tattooed trust fund kinfolk prism. Pinterest deep v beard food truck pitchfork umami lyft 
+                four loko tumeric locavore. Pug literally heirloom chillwave. Church-key cardigan aesthetic mumblecore 
+                prism succulents, actually wayfarers next level hammock 90's irony blog bicycle rights. Hexagon pok 
+                pok farm-to-table mlkshk forage, put a bird on it intelligentsia kickstarter celiac.
+            </p>
+        </div>
+        <div class="card-footer">
+            <a class="add-article" href="#">+ Add a review</a>
+        </div>
+    </div>
+</div> -->
